@@ -11,7 +11,7 @@ let accAvatar = document.querySelector(".avatar-display");
 if (sessionStorage.getItem("currentUser")) {
   if (!JSON.parse(sessionStorage.getItem("currentUser")).avatar) {
     accAvatar.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(
-      JSON.parse(localStorage.getItem("currentUser")).username
+      JSON.parse(sessionStorage.getItem("currentUser")).username
     )}`;
   } else {
     accAvatar.src = encodeURIComponent(
