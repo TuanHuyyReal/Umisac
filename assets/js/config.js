@@ -15,12 +15,12 @@ if (sessionStorage.getItem("currentUser")) {
     )}`;
   } else {
     accAvatar.src = encodeURIComponent(
-      JSON.parse(localStorage.getItem("currentUser")).avatar_url
+      JSON.parse(sessionStorage.getItem("currentUser")).avatar_url
     );
   }
   accDisplay.innerHTML = `
   <ul class = "account-info">
-  <li>${JSON.parse(localStorage.getItem("currentUser")).name}</li>
+  <li>${JSON.parse(sessionStorage.getItem("currentUser")).username}</li>
   <li onclick = "handleSignOut()">Logout</li>
   </ul>
   `;
@@ -36,4 +36,9 @@ accDisplay.classList.add("hidden");
 
 accAvatar.addEventListener("click", () => {
   accDisplay.classList.toggle("hidden");
+  if (!accDisplay.classList.contains("hidden")) {
+    accDisplay.style.animation = "slide 0.5s ease-in-out";
+  } else {
+    accDisplay.style.animation = "slide 0.5s ease-in-out reverse";
+  }
 });
