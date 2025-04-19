@@ -20,11 +20,7 @@ if (sessionStorage.getItem("currentUser")) {
   }
   accDisplay.innerHTML = `
   <ul class = "account-info">
-<<<<<<< HEAD
   <li>${JSON.parse(sessionStorage.getItem("currentUser")).username}</li>
-=======
-  <li>${JSON.parse(sessionStorage.getItem("currentUser")).name}</li>
->>>>>>> c0544a14d52d5192c8ed35919353acc0711f8b07
   <li onclick = "handleSignOut()">Logout</li>
   </ul>
   `;

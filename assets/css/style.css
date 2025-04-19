@@ -166,11 +166,12 @@ ul.account-info {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding: 1rem;
   align-items: start;
   justify-content: center;
-  padding: 1rem;
 }
 ul.account-info li {
+  color: #fff !important;
   font-size: 1.5rem;
   font-weight: 600;
 }
