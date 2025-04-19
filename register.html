@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <title>Umisac - Home</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <!-- my styles -->
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/animation.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/reg.css" />
+    <!-- <link rel="stylesheet" href="assets/css/switch-theme.css" /> -->
+  </head>
+
+  <body>
+    <header>
+      <!-- place navbar here -->
+      <nav class="nav navbar">
+        <h1 id="web-main-title">
+          <img src="assets/images/logo.png" alt="Umisac" />
+        </h1>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="home-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#home"
+              type="button"
+              role="tab"
+              aria-controls="home"
+              aria-selected="true"
+            >
+              LOGIN
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="profile-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#profile"
+              type="button"
+              role="tab"
+              aria-controls="profile"
+              aria-selected="false"
+            >
+              SIGNUP
+            </button>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+      </nav>
+    </header>
+    <main>
+      <div class="tab-content">
+        <div
+          class="tab-pane active"
+          id="home"
+          role="tabpanel"
+          aria-labelledby="home-tab"
+        >
+          <div class="login-form">
+            <h2 class="login-title title">Login</h2>
+            <input
+              required
+              type="text"
+              class="form-control"
+              name=""
+              id="username-input"
+              aria-describedby="helpId"
+              placeholder="Username"
+            />
+            <input
+              required
+              type="email"
+              class="form-control"
+              name=""
+              id="email"
+              placeholder="Email"
+            />
+            <input
+              required
+              type="password"
+              class="form-control"
+              name=""
+              id="password"
+              placeholder="Password"
+            />
+
+            <small class="message"></small>
+            <button class="btn btn-primary sbm-btn">Submit</button>
+
+            <div class="suc-container hidden">
+              <div class="suc-info">Logged In Successfully</div>
+              <a href="./index.html" class="suc-btn">Visit menu!</a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="tab-pane"
+          id="profile"
+          role="tabpanel"
+          aria-labelledby="profile-tab"
+        >
+          <div class="signup-form">
+            <h2 class="signup-title title">Register</h2>
+            <input
+              required
+              type="text"
+              class="form-control"
+              name=""
+              id="signup-username-input"
+              aria-describedby="helpId"
+              placeholder="Username"
+            />
+            <input
+              required
+              type="email"
+              class="form-control"
+              name=""
+              id="signup-email-input"
+              aria-describedby="helpId"
+              placeholder="Email"
+            />
+            <input
+              required
+              type="password"
+              class="form-control"
+              name=""
+              id="signup-password"
+              placeholder="Password"
+            />
+            <input
+              required
+              type="password"
+              class="form-control"
+              name=""
+              id="signup-confirm-pass"
+              placeholder="Confirm password"
+            />
+            <small class="signup-message"></small>
+            <button class="btn btn-primary sbm-btn signup-sbm-btn">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="module" src="assets/js/config.js"></script>
+    <script src="assets/js/login.js"></script>
+    <script src="assets/js/signup.js"></script>
+  </body>
+</html>
