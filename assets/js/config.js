@@ -15,12 +15,12 @@ if (sessionStorage.getItem("currentUser")) {
     )}`;
   } else {
     accAvatar.src = encodeURIComponent(
-      JSON.parse(localStorage.getItem("currentUser")).avatar_url
+      JSON.parse(sessionStorage.getItem("currentUser")).avatar_url
     );
   }
   accDisplay.innerHTML = `
   <ul class = "account-info">
-  <li>${JSON.parse(localStorage.getItem("currentUser")).name}</li>
+  <li>${JSON.parse(sessionStorage.getItem("currentUser")).name}</li>
   <li onclick = "handleSignOut()">Logout</li>
   </ul>
   `;
