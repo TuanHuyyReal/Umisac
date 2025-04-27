@@ -20,19 +20,23 @@ const playlists = [];
     homeContent.appendChild(songCard);
   });
 })();
-const asideUl = document.querySelector("main aside.playlists-container ul");
-JSON.parse(sessionStorage.getItem("albumContainer")).forEach((album) => {
-  // const albumCard = document.createElement("div");
-  asideUl.innerHTML += `
-    <li class="playlist-card" title = "${album.albumName}">
-      <img src="assets/images/folder-icons/${album.albumImage}.png" alt="${album.albumName}" class="card-image" />
-
-    </li>
-    `;
-});
 const albumContainer = sessionStorage.getItem("albumContainer")
   ? JSON.parse(sessionStorage.getItem("albumContainer"))
   : [];
+const asideUl = document.querySelector("main aside.playlists-container ul");
+albumContainer.forEach((album) => {
+  // const albumCard = document.createElement("div");
+  if (albumContainer.length == 0) {
+    return;
+  } else {
+    asideUl.innerHTML += `
+    <li class="playlist-card" title = "${album.albumName}">
+      <img src="assets/images/folder-icons/${album.albumImage}.png" alt="${album.albumName}" class="card-image" />
+    </li>
+    `;
+  }
+});
+
 document.querySelector(`li.playlist-card`).addEventListener("click", () => {
   document.querySelector(".playlist-form").classList.remove("hidden");
   let boxes = document.querySelectorAll("input[type=checkbox]");
