@@ -24,6 +24,7 @@ const albumContainer = sessionStorage.getItem("albumContainer")
   ? JSON.parse(sessionStorage.getItem("albumContainer"))
   : [];
 const asideUl = document.querySelector("main aside.playlists-container ul");
+// fixing this
 albumContainer.forEach((album) => {
   // const albumCard = document.createElement("div");
   if (albumContainer.length == 0) {
