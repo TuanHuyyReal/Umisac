@@ -8,6 +8,8 @@ signUpSubmit.addEventListener("click", (event) => {
   );
   signupMessage.classList.add("hidden");
   signupMessage.innerHTML = "";
+  signupMessage.classList.remove("green");
+  signupMessage.classList.remove("bold");
   let username = document.querySelector(
     ".signup-form input#signup-username-input"
   ).value;
@@ -91,6 +93,8 @@ signUpSubmit.addEventListener("click", (event) => {
       let users = [newUser];
       sessionStorage.setItem("users", JSON.stringify(users));
       signupMessage.classList.remove("hidden");
+      signupMessage.classList.add("green");
+      signupMessage.classList.add("bold");
       signupMessage.innerHTML = "Registration successful! You can now log in.";
       // location.href = "./login.html";
     }

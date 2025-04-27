@@ -1,0 +1,241 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  z-index: 0;
+}
+main {
+  margin-top: 10vh;
+  height: 90vh;
+  display: grid;
+  grid-template-areas:
+    "aside section section section music-display"
+    "aside section section section music-display"
+    "aside section section section music-display"
+    "aside section section section music-display"
+    "aside section section section music-display"
+    "player player player player player";
+}
+::-webkit-scrollbar {
+  width: 1rem;
+  color: var(--sec-co);
+  background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  height: 2rem;
+  background-color: var(--sec-co);
+  border-radius: 1rem;
+  padding: 2px;
+}
+::-moz-scrollbar {
+  width: 1rem;
+  color: var(--sec-co);
+  background-color: #fff;
+}
+aside {
+  grid-area: aside;
+  width: 100%;
+}
+aside .tab-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--text-co);
+}
+section.content {
+  grid-area: section;
+  padding: 2rem;
+  border: 1px solid var(--sec-co);
+  height: 80vh;
+  border-top: none;
+  border-bottom: none;
+  display: grid;
+  grid-template-columns: repeat(4, 0.5fr);
+  gap: 2rem;
+  overflow-y: auto;
+}
+div.music-display {
+  grid-area: music-display;
+}
+div.player {
+  grid-area: player;
+  border: 1px solid var(--sec-co);
+  z-index: 1;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 10vh;
+  background-color: var(--bg-co);
+}
+h2.greeting {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 4rem;
+}
+main .search-bar {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50vw;
+  height: 6rem;
+  border-radius: 3rem;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+main .search-bar img {
+  width: 3rem;
+}
+main .search-bar input[type="text"] {
+  height: 6rem;
+  width: 50vw;
+  border: none;
+  outline: none;
+  font-size: 2rem;
+  color: var(--text-co);
+  background-color: transparent;
+  padding: 0 1rem;
+}
+.song-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 15vw;
+  height: 20rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  background-color: var(--sec-co);
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: var(--bg-co);
+  text-align: center;
+  /* background-color: var(--text-co); */
+}
+.song-card img {
+  width: 40%;
+}
+ul.playlists {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  height: 80vh;
+  padding: 2rem;
+  /* border: 1px solid var(--sec-co); */
+  border-top: none;
+  border-bottom: none;
+}
+.playlists li.playlist-card button.create-playlist-button {
+  font-size: 3.6rem;
+  background-color: var(--sec-co);
+  border: 1px solid var(--sec-co);
+  border-radius: 50%;
+}
+.playlists li.playlist-card h3 {
+  font-size: 1.5rem;
+}
+.playlists li.playlist-card img {
+  width: 40%;
+}
+.playlists li.playlist-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 15vw;
+  height: 10rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  background-color: var(--sec-co);
+  /* cursor: pointer; */
+  font-size: 1.5rem;
+  color: var(--bg-co);
+  text-align: center;
+  /* background-color: var(--text-co); */
+}
+form.playlist-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  height: 40vh;
+  background-color: var(--pri-co);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  color: var(--text-co);
+  text-align: center;
+  font-size: 2rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+form.playlist-form h2.title {
+  font-size: 3.6rem !important;
+  position: absolute;
+  top: 8%;
+}
+form.playlist-form div.inputs-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+form.playlist-form div.text-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+form.playlist-form input[type="text"] {
+  height: 4rem;
+  width: 30rem;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  color: var(--text-co);
+  background-color: transparent;
+  padding: 0 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+}
+form.playlist-form button.playlist-sbm-btn {
+  width: 22.5vw;
+  padding: 2rem;
+  border-radius: 9px;
+  background-color: var(--sec-co);
+  color: var(--bg-co);
+  transition: all 0.3s linear;
+}
+form.playlist-form button.playlist-sbm-btn:hover {
+  background-color: var(--bri-co);
+  color: var(--bg-co);
+}
+div.color-inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+div.color {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+div.color-inputs input[type="checkbox"] {
+  width: 1vw;
+  height: 1vw;
+  border-radius: 50%;
+}
+div.color-inputs input[type="checkbox"]:checked {
+  background-color: var(--sec-co);
+}

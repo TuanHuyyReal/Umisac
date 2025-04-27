@@ -81,7 +81,7 @@ header nav.navbar .functional a.direct img {
 header nav.navbar .functional a.direct:hover {
   animation: rotate 1s ease-in-out;
 }
-header nav.navbar .functional .search-bar img {
+.search-bar img {
   width: 10%;
   display: inline-flex;
 }
@@ -179,3 +179,5 @@ ul.account-info li {
 ul.account-info li[onclick="handleSignOut()"] {
   text-decoration: underline !important;
 }
+
+/* main */

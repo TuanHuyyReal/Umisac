@@ -1,7 +1,5 @@
-export const SPOTIFY_API_KEY =
-  "BQC7RbpjSe91a4T6ISd7cE7CupVhzXNuARmWB4RFNzTs27PAo9JflRPIa8WcRXKzneQp13BJa4Vhaj4y_hVTOGHvrpXpnO_kVsolDulS-HemIqx0UHbAPSOi5TviL_mcc57ltyLchSQ";
-
-export const SPOTIFY_API_URL = "https://api.spotify.com/v1";
+export const UMISAC_API =
+  "https://68039ba20a99cb7408ec7fa6.mockapi.io/umisac/item_song";
 window.handleSignOut = () => {
   sessionStorage.removeItem("currentUser");
   location.reload();

@@ -16,7 +16,12 @@ body {
 main {
   height: 100vh;
 }
-
+.green {
+  color: #00ff2a;
+}
+.bold {
+  font-weight: 700;
+}
 h1.big-title {
   font-size: 3rem;
   font-weight: 800;

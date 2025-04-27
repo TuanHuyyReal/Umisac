@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="assets/css/reset.css" />
     <link rel="stylesheet" href="assets/css/animation.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/home.css" />
     <!-- <link rel="stylesheet" href="assets/css/switch-theme.css" /> -->
   </head>
 
@@ -32,7 +33,7 @@
           <img src="assets/images/logo.png" alt="Umisac" />
         </h1>
         <div class="functional f-container">
-          <a href="#!" class="direct home-direct"
+          <a href="./index.html" class="direct home-direct"
             ><img src="assets/images/home.svg" alt="" />
           </a>
           <div class="search-bar">
@@ -51,8 +52,54 @@
     </header>
     <main>
       <aside class="playlists-container aside">
-        <ul class="playlists"></ul>
+        <h3 class="tab-title">Albums</h3>
+        <ul class="playlists">
+          <li class="playlist-card" id="create-playlist">
+            <button class="create-playlist-button">
+              <span>+</span>
+            </button>
+          </li>
+        </ul>
       </aside>
+      <section class="content"></section>
+      <div class="music-display"></div>
+      <div class="player"></div>
+
+      <form class="playlist-form hidden">
+        <h2 class="playlist-title title">Create Playlist</h2>
+        <div class = "inputs-wrapper">
+            <div class = "text-inputs">
+              <input required type="text" class="form-control" name="" id="playlist-name-input" placeholder="Playlist Name">
+              <input required type="text" class="form-control" name="" id="playlist-desc-input" placeholder="Playlist Description">
+            </div>
+            <div class = "color-inputs">
+              <div class = "color">
+                <input  type="checkbox" value="red" class="form-control" name="red-inp"  placeholder="Playlist Color">
+                <label for="red-inp" class = "color-label">Red</label>
+              </div>
+              <div class="color">
+                <input  type="checkbox" value="blue" class="form-control" name="blue-inp" placeholder="Playlist Color">
+                <label for="blue-inp" class="color-label">Blue</label>
+              </div>
+              <div class="color">
+                <input  type="checkbox" value="orange" class="form-control" name="orange-inp" placeholder="Playlist Color">
+                <label for="orange-inp" class="color-label">Orange</label>
+              </div>
+              <div class="color">
+                <input  type="checkbox" value="yellow" class="form-control" name="yellow-inp" placeholder="Playlist Color">
+                <label for="yellow-inp" class="color-label">Yellow</label>
+              </div>
+              <div class="color">
+                <input  type="checkbox" value="green" class="form-control" name="green-inp" placeholder="Playlist Color">
+                <label for="green-inp" class="color-label">Green</label>
+              </div>
+              <div class="color">
+                <input  type="checkbox" value="pink" class="form-control" name="pink-inp" placeholder="Playlist Color">
+                <label for="pink-inp" class="color-label">Pink</label>
+              </div>
+        </div>
+        <button class="playlist-sbm-btn">Create</button>
+       </form>
     </main>
     <footer>
       <!-- place footer here -->
@@ -71,5 +118,6 @@
     ></script>
 
     <script type="module" src="assets/js/config.js"></script>
+    <script type="module" src="assets/js/home.js"></script>
   </body>
 </html>
