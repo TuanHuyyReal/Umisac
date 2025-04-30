@@ -1,4 +1,4 @@
-if (sessionStorage.getItem("currentUser")) {
+if (localStorage.getItem("currentUser")) {
   location.href = "./index.html";
 }
 const submit = document.querySelector(".login-form button.sbm-btn");
@@ -14,10 +14,10 @@ submit.addEventListener("click", (event) => {
   ).value;
   let loginPw = document.querySelector(".login-form input#password").value;
   let loginEmail = document.querySelector(".login-form input#email").value;
-  let users = sessionStorage.getItem("users");
+  let users = localStorage.getItem("users");
 
   function success() {
-    let avatar = JSON.parse(sessionStorage.getItem("users")).map((user) => {
+    const avatar = JSON.parse(localStorage.getItem("users")).map((user) => {
       if (user.email == loginEmail) {
         if (!user.avatar) {
           userAvatar = user.avatar;
@@ -29,14 +29,22 @@ submit.addEventListener("click", (event) => {
         return userAvatar;
       }
     });
+    const albumContainer = JSON.parse(localStorage.getItem("users")).map(
+      (user) => {
+        if (user.email == loginEmail && user.albumContainer) {
+          return user.albumContainer;
+        }
+      }
+    );
     successContainer.classList.remove("hidden");
-    sessionStorage.setItem(
+    localStorage.setItem(
       "currentUser",
       JSON.stringify({
         username: loginUsername,
         email: loginEmail,
         password: loginPw,
         avatar: avatar[0],
+        albumContainer: albumContainer,
       })
     );
   }
@@ -46,10 +54,10 @@ submit.addEventListener("click", (event) => {
       continue;
     } else {
       if (
-        loginUsername != sessionStorage.getItem("users").username ||
-        loginPw != sessionStorage.getItem("users").password
+        loginUsername != localStorage.getItem("users").username ||
+        loginPw != localStorage.getItem("users").password
       ) {
-        console.log(sessionStorage.getItem("users"));
+        console.log(localStorage.getItem("users"));
         loginMessage.classList.remove("hidden");
         loginMessage.innerHTML = "Invalid username or password";
       } else {

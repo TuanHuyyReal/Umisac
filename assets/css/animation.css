@@ -16,11 +16,12 @@
 @keyframes slide {
   0% {
     transform: translateX(10rem);
+    transform: translateY(-90%);
   }
   50% {
-    transform: translateX(-5rem);
+    transform: translate(-5rem, -90%);
   }
   100% {
-    transform: translateX(0);
+    transform: translate(0, -90%);
   }
 }

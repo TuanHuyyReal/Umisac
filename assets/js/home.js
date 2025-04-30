@@ -4,7 +4,6 @@ const homeContent = document.querySelector(".content");
 const homeMusicDisplay = document.querySelector(".music-display");
 const homePlayer = document.querySelector(".player");
 const playlists = [];
-// console.log(JSON.parse(sessionStorage.getItem(albumContainer)));
 (async () => {
   const response = await fetch(UMISAC_API);
   const songData = await response.json();
@@ -20,24 +19,36 @@ const playlists = [];
     homeContent.appendChild(songCard);
   });
 })();
-const albumContainer = sessionStorage.getItem("albumContainer")
-  ? JSON.parse(sessionStorage.getItem("albumContainer"))
-  : [];
-const asideUl = document.querySelector("main aside.playlists-container ul");
-// fixing this
-albumContainer.forEach((album) => {
-  // const albumCard = document.createElement("div");
-  if (albumContainer.length == 0) {
-    return;
-  } else {
-    asideUl.innerHTML += `
-    <li class="playlist-card" title = "${album.albumName}">
-      <img src="assets/images/folder-icons/${album.albumImage}.png" alt="${album.albumName}" class="card-image" />
-    </li>
-    `;
+// console.log(JSON.parse(localStorage.getItem("currentUser")).albumContainer);
+const albumContainer =
+  JSON.parse(localStorage.getItem("currentUser")).albumContainer || [];
+albumContainer.forEach((array) => {
+  if (Array.isArray(array)) {
+    array.forEach((album) => {
+      if (Array.isArray(album)) {
+        albumContainer.push(album);
+      } else albumContainer.push(album);
+    });
+    albumContainer.shift(albumContainer.indexOf(array), 1);
   }
 });
-
+const asideUl = document.querySelector("main aside.playlists-container ul");
+function renderAlbums() {
+  albumContainer.forEach((album) => {
+    if (
+      !(albumContainer.length == 0 || !album || album == {} || album == null)
+    ) {
+      if (album.albumImage && album.albumName && album.albumDesc) {
+        asideUl.innerHTML += `
+        <li class="playlist-card" title = "${album.albumName}">
+          <img src="assets/images/folder-icons/${album.albumImage}.png" alt="${album.albumName}" class="card-image" />
+        </li>
+        `;
+      }
+    }
+  });
+}
+renderAlbums();
 document.querySelector(`li.playlist-card`).addEventListener("click", () => {
   document.querySelector(".playlist-form").classList.remove("hidden");
   let boxes = document.querySelectorAll("input[type=checkbox]");
@@ -59,9 +70,30 @@ document.querySelector(`li.playlist-card`).addEventListener("click", () => {
         albumDesc: document.querySelector("#playlist-desc-input").value,
       };
       albumContainer.push(album);
-      sessionStorage.setItem("albumContainer", JSON.stringify(albumContainer));
-      console.log(JSON.parse(sessionStorage.getItem("albumContainer")));
-      location.href = "./index.html";
+      let currentUser = {
+        username: JSON.parse(localStorage.getItem("currentUser")).username,
+        email: JSON.parse(localStorage.getItem("currentUser")).email,
+        password: JSON.parse(localStorage.getItem("currentUser")).password,
+        albumContainer: albumContainer,
+      };
+      console.log(currentUser);
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
+      const updatedUsers = JSON.parse(localStorage.getItem("users")).map(
+        (user) => {
+          if (
+            user.email == JSON.parse(localStorage.getItem("currentUser")).email
+          ) {
+            return JSON.parse(localStorage.getItem("currentUser"));
+          } else return user;
+        }
+      );
+      console.log(updatedUsers);
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+      // console.log(JSON.parse(localStorage.getItem("currentUser")));
+      const reload = setInterval(5000, () => {
+        clearInterval(reload);
+        location.reload();
+      });
     });
 });
 

@@ -25,6 +25,12 @@ body {
 .hidden {
   display: none !important;
 }
+.green {
+  color: green !important;
+}
+.bold {
+  font-weight: 700 !important;
+}
 header {
   width: 100vw;
   height: 10vh;
@@ -43,6 +49,7 @@ nav.navbar {
   width: 100%;
   display: flex;
   justify-content: space-around;
+  position: relative;
 }
 header nav.navbar h1#web-main-title {
   display: flex;
@@ -131,9 +138,11 @@ header nav.navbar .functional a.direct:hover {
 .avatar-display:hover {
   animation: rotate 1s ease-in-out;
 }
-.account-info-display {
-  position: absolute;
-  top: 0;
+div.account-info-display {
+  z-index: 2 !important;
+  position: fixed;
+  transform: translateY(-90%);
+  top: 0%;
   right: 2%;
   width: 8rem;
   height: 8rem;
@@ -169,11 +178,13 @@ ul.account-info {
   padding: 1rem;
   align-items: start;
   justify-content: center;
+  z-index: 2 !important;
 }
 ul.account-info li {
   color: #fff !important;
   font-size: 1.5rem;
   font-weight: 600;
+  cursor: pointer;
 }
 
 ul.account-info li[onclick="handleSignOut()"] {

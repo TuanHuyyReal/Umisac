@@ -1,24 +1,24 @@
 export const UMISAC_API =
   "https://68039ba20a99cb7408ec7fa6.mockapi.io/umisac/item_song";
 window.handleSignOut = () => {
-  sessionStorage.removeItem("currentUser");
+  localStorage.removeItem("currentUser");
   location.reload();
 };
 let accDisplay = document.querySelector(".account-info-display");
 let accAvatar = document.querySelector(".avatar-display");
-if (sessionStorage.getItem("currentUser")) {
-  if (!JSON.parse(sessionStorage.getItem("currentUser")).avatar) {
+if (localStorage.getItem("currentUser")) {
+  if (!JSON.parse(localStorage.getItem("currentUser")).avatar) {
     accAvatar.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(
-      JSON.parse(sessionStorage.getItem("currentUser")).username
+      JSON.parse(localStorage.getItem("currentUser")).username
     )}`;
   } else {
     accAvatar.src = encodeURIComponent(
-      JSON.parse(sessionStorage.getItem("currentUser")).avatar_url
+      JSON.parse(localStorage.getItem("currentUser")).avatar_url
     );
   }
   accDisplay.innerHTML = `
   <ul class = "account-info">
-  <li>${JSON.parse(sessionStorage.getItem("currentUser")).username}</li>
+  <li>${JSON.parse(localStorage.getItem("currentUser")).username}</li>
   <li onclick = "handleSignOut()">Logout</li>
   </ul>
   `;
@@ -29,9 +29,14 @@ if (sessionStorage.getItem("currentUser")) {
   <li><a href="./register.html" class = "reg-direct">Register</a></li></ul>
   `;
   accAvatar.src = "./assets/images/register.svg";
+  document
+    .querySelector("div.account-info-display")
+    .addEventListener("click", () => {
+      location.href = "./register.html";
+    });
 }
-accDisplay.classList.add("hidden");
 
+accDisplay.classList.add("hidden");
 accAvatar.addEventListener("click", () => {
   accDisplay.classList.toggle("hidden");
   if (!accDisplay.classList.contains("hidden")) {
@@ -40,3 +45,11 @@ accAvatar.addEventListener("click", () => {
     accDisplay.style.animation = "slide 0.5s ease-in-out reverse";
   }
 });
+
+(async function checkLoggedIn() {
+  if (!localStorage.getItem("currentUser")) {
+    document.querySelector(".require-reg").classList.remove("hidden");
+  } else {
+    document.querySelector(".require-reg").classList.add("hidden");
+  }
+})();

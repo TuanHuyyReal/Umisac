@@ -58,15 +58,15 @@ signUpSubmit.addEventListener("click", (event) => {
     signupMessage.classList.remove("hidden");
     signupMessage.textContent +=
       "Please sure that you entered the correct confirmation.";
-  } else if (username == sessionStorage.getItem("username")) {
+  } else if (username == localStorage.getItem("username")) {
     signupMessage.classList.remove("hidden");
     signupMessage.innerHTML = "Username has been used!";
   } else if (!validateEmail(email)) {
     signupMessage.classList.remove("hidden");
     signupMessage.innerHTML += "You did not redeem an email with correct form.";
   } else {
-    if (sessionStorage.getItem("users")) {
-      let users = JSON.parse(sessionStorage.getItem("users"));
+    if (localStorage.getItem("users")) {
+      let users = JSON.parse(localStorage.getItem("users"));
       let existingUser = users.find((user) => user.email === email);
       if (existingUser) {
         alert("Email already exists. Please use a different email.");
@@ -78,10 +78,10 @@ signUpSubmit.addEventListener("click", (event) => {
           password: password,
         };
         users.push(newUser);
-        sessionStorage.setItem("users", JSON.stringify(users));
+        localStorage.setItem("users", JSON.stringify(users));
         signupMessage.classList.remove("hidden");
         signupMessage.innerHTML =
-          "Registration successful! You can now log in.";
+          '<span class="green bold">Registration successful! You can now log in.</span>';
         // location.href = "./login.html";
       }
     } else {
@@ -91,12 +91,12 @@ signUpSubmit.addEventListener("click", (event) => {
         password: password,
       };
       let users = [newUser];
-      sessionStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("users", JSON.stringify(users));
       signupMessage.classList.remove("hidden");
-      signupMessage.classList.add("green");
-      signupMessage.classList.add("bold");
-      signupMessage.innerHTML = "Registration successful! You can now log in.";
+      signupMessage.innerHTML =
+        "<span class = `green bold`>Registration successful! You can now log in.</span> ";
       // location.href = "./login.html";
+      location.reload();
     }
   }
 
