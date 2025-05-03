@@ -36,6 +36,11 @@ submit.addEventListener("click", (event) => {
         }
       }
     );
+    const userId = JSON.parse(localStorage.getItem("users")).forEach((user) => {
+      if (user.email == loginEmail) {
+        return user.id;
+      }
+    });
     successContainer.classList.remove("hidden");
     localStorage.setItem(
       "currentUser",
@@ -45,6 +50,7 @@ submit.addEventListener("click", (event) => {
         password: loginPw,
         avatar: avatar[0],
         albumContainer: albumContainer,
+        id: userId,
       })
     );
   }

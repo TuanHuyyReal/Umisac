@@ -31,6 +31,9 @@ body {
 .bold {
   font-weight: 700 !important;
 }
+.invisible {
+  visibility: hidden !important;
+}
 header {
   width: 100vw;
   height: 10vh;
@@ -179,16 +182,30 @@ ul.account-info {
   align-items: start;
   justify-content: center;
   z-index: 2 !important;
+  height: 100%;
+}
+ul.account-info li span.remove {
+  font-family: "Courier New", Courier, monospace !important;
+  font-weight: 700 !important;
+  position: absolute;
+  top: 8%;
+  right: 8%;
+  font-size: 3.6rem;
+  cursor: pointer;
 }
 ul.account-info li {
   color: #fff !important;
-  font-size: 1.5rem;
-  font-weight: 600;
-  cursor: pointer;
+  font-size: 2rem;
+  cursor: default;
 }
 
 ul.account-info li[onclick="handleSignOut()"] {
+  cursor: pointer;
   text-decoration: underline !important;
+  font-weight: 700;
 }
 
+ul.account-info li[onclick="handleSignOut()"]:hover {
+  color: var(--bg-co) !important;
+}
 /* main */

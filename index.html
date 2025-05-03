@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="assets/css/animation.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/home.css" />
+    <link rel="stylesheet" href="assets/css/player.css" />
     <!-- <link rel="stylesheet" href="assets/css/switch-theme.css" /> -->
   </head>
 
@@ -38,7 +39,11 @@
           </a>
           <div class="search-bar">
             <img src="assets/images/search.svg" alt="" />
-            <input type="text" placeholder="What do you want to play?" />
+            <input
+              type="text"
+              placeholder="What do you want to play?"
+              class="search-input"
+            />
           </div>
         </div>
         <img
@@ -51,7 +56,7 @@
       </nav>
     </header>
     <main>
-      <div class=" require-reg">
+      <div class="require-reg">
         <h2>You must register first</h2>
         <a href="./register.html">Register</a>
       </div>
@@ -67,43 +72,144 @@
       </aside>
       <section class="content"></section>
       <div class="music-display"></div>
-      <div class="player"></div>
-
+      <div class="player">
+        <div class="player-controls">
+          <div class="prev-icon">
+            <img
+              class="prev-icon"
+              src="assets/images/previous.svg"
+              alt="prev"
+            />
+          </div>
+          <div class="play-icon">
+            <img class="play-icon" src="assets/images/play.svg" alt="play" />
+          </div>
+          <div class="next-icon">
+            <img class="next-icon" src="assets/images/next.svg" alt="next" />
+          </div>
+        </div>
+        <div class="player-timer">
+          <span class="current-time">0:00</span>
+          <input
+            type="range"
+            name="player-time"
+            class="time-display seek-slider"
+            id="player-time"
+            min="0"
+            value="0"
+          />
+          <span class="duration">3:27</span>
+        </div>
+      </div>
+      <audio class="invisible" id="audio-player" src=""></audio>
+      <div class="right-click-appear songs-adjust hidden">
+        <span class="remove">X</span>
+        <ul>
+          <li class="add-to-playlist">
+            <button class="btn add-btn add-to-playlist">Add to playlist</button>
+          </li>
+          <li class="remove-from-playlist">
+            <button class="btn remove-btn remove-from-playlist">
+              Remove from playlist
+            </button>
+          </li>
+          <li class="play-song">
+            <button class="btn play-btn play-song">Play this now!</button>
+          </li>
+        </ul>
+      </div>
+      <div class="playlist-list right-click-app hidden">
+        <span class="remove">X</span>
+        <ul class="playlists-select"></ul>
+        <button class="playlist-cfm-btn cfm-btn">ADD!</button>
+      </div>
       <form class="playlist-form hidden">
+        <span class="remove">X</span>
         <h2 class="playlist-title title">Create Playlist</h2>
-        <div class = "inputs-wrapper">
-            <div class = "text-inputs">
-              <input required type="text" class="form-control" name="" id="playlist-name-input" placeholder="Playlist Name">
-              <input required type="text" class="form-control" name="" id="playlist-desc-input" placeholder="Playlist Description">
+        <div class="inputs-wrapper">
+          <div class="text-inputs">
+            <input
+              required
+              type="text"
+              class="form-control"
+              name=""
+              id="playlist-name-input"
+              placeholder="Playlist Name"
+            />
+            <input
+              required
+              type="text"
+              class="form-control"
+              name=""
+              id="playlist-desc-input"
+              placeholder="Playlist Description"
+            />
+          </div>
+          <div class="color-inputs">
+            <div class="color">
+              <input
+                type="checkbox"
+                value="red"
+                class="form-control"
+                name="red-inp"
+                placeholder="Playlist Color"
+              />
+              <label for="red-inp" class="color-label">Red</label>
             </div>
-            <div class = "color-inputs">
-              <div class = "color">
-                <input  type="checkbox" value="red" class="form-control" name="red-inp"  placeholder="Playlist Color">
-                <label for="red-inp" class = "color-label">Red</label>
-              </div>
-              <div class="color">
-                <input  type="checkbox" value="blue" class="form-control" name="blue-inp" placeholder="Playlist Color">
-                <label for="blue-inp" class="color-label">Blue</label>
-              </div>
-              <div class="color">
-                <input  type="checkbox" value="orange" class="form-control" name="orange-inp" placeholder="Playlist Color">
-                <label for="orange-inp" class="color-label">Orange</label>
-              </div>
-              <div class="color">
-                <input  type="checkbox" value="yellow" class="form-control" name="yellow-inp" placeholder="Playlist Color">
-                <label for="yellow-inp" class="color-label">Yellow</label>
-              </div>
-              <div class="color">
-                <input  type="checkbox" value="green" class="form-control" name="green-inp" placeholder="Playlist Color">
-                <label for="green-inp" class="color-label">Green</label>
-              </div>
-              <div class="color">
-                <input  type="checkbox" value="pink" class="form-control" name="pink-inp" placeholder="Playlist Color">
-                <label for="pink-inp" class="color-label">Pink</label>
-              </div>
+            <div class="color">
+              <input
+                type="checkbox"
+                value="blue"
+                class="form-control"
+                name="blue-inp"
+                placeholder="Playlist Color"
+              />
+              <label for="blue-inp" class="color-label">Blue</label>
+            </div>
+            <div class="color">
+              <input
+                type="checkbox"
+                value="orange"
+                class="form-control"
+                name="orange-inp"
+                placeholder="Playlist Color"
+              />
+              <label for="orange-inp" class="color-label">Orange</label>
+            </div>
+            <div class="color">
+              <input
+                type="checkbox"
+                value="yellow"
+                class="form-control"
+                name="yellow-inp"
+                placeholder="Playlist Color"
+              />
+              <label for="yellow-inp" class="color-label">Yellow</label>
+            </div>
+            <div class="color">
+              <input
+                type="checkbox"
+                value="green"
+                class="form-control"
+                name="green-inp"
+                placeholder="Playlist Color"
+              />
+              <label for="green-inp" class="color-label">Green</label>
+            </div>
+            <div class="color">
+              <input
+                type="checkbox"
+                value="pink"
+                class="form-control"
+                name="pink-inp"
+                placeholder="Playlist Color"
+              />
+              <label for="pink-inp" class="color-label">Pink</label>
+            </div>
+          </div>
         </div>
         <button class="playlist-sbm-btn">Create</button>
-       </form>
+      </form>
     </main>
     <footer>
       <!-- place footer here -->
@@ -123,5 +229,7 @@
 
     <script type="module" src="assets/js/config.js"></script>
     <script type="module" src="assets/js/home.js"></script>
+    <script type="module" src="assets/js/search.js"></script>
+    <script src="assets/js/player.js"></script>
   </body>
 </html>

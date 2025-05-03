@@ -25,3 +25,14 @@
     transform: translate(0, -90%);
   }
 }
+@keyframes scaleOut {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.2;
+  }
+  100% {
+    scale: 1;
+  }
+}

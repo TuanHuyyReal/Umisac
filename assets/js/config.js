@@ -18,10 +18,14 @@ if (localStorage.getItem("currentUser")) {
   }
   accDisplay.innerHTML = `
   <ul class = "account-info">
+  <li><span class="remove">X</span></li>
   <li>${JSON.parse(localStorage.getItem("currentUser")).username}</li>
   <li onclick = "handleSignOut()">Logout</li>
   </ul>
   `;
+  document.querySelector("span.remove").addEventListener("click", () => {
+    accDisplay.classList.add("hidden");
+  });
 } else {
   // accDisplay.style.display = "none";
   accDisplay.innerHTML = `

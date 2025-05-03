@@ -76,6 +76,7 @@ signUpSubmit.addEventListener("click", (event) => {
           username: username,
           email: email,
           password: password,
+          id: Math.random().toString(16).slice(2),
         };
         users.push(newUser);
         localStorage.setItem("users", JSON.stringify(users));
@@ -83,6 +84,8 @@ signUpSubmit.addEventListener("click", (event) => {
         signupMessage.innerHTML =
           '<span class="green bold">Registration successful! You can now log in.</span>';
         // location.href = "./login.html";
+        alert("Registration successful! You can now log in.");
+        location.reload();
       }
     } else {
       let newUser = {
@@ -94,8 +97,9 @@ signUpSubmit.addEventListener("click", (event) => {
       localStorage.setItem("users", JSON.stringify(users));
       signupMessage.classList.remove("hidden");
       signupMessage.innerHTML =
-        "<span class = `green bold`>Registration successful! You can now log in.</span> ";
+        '<span class = "green bold">Registration successful! You can now log in.</span> ';
       // location.href = "./login.html";
+      alert("Registration successful! You can now log in.");
       location.reload();
     }
   }
