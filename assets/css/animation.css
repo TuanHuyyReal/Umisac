@@ -36,3 +36,11 @@
     scale: 1;
   }
 }
+@keyframes xoayVong {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}

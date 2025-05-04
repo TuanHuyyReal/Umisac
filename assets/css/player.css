@@ -53,3 +53,38 @@
   font-weight: 600;
   color: var(--text-co);
 }
+
+/* music display */
+.music-display div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.music-display img {
+  rotate: 0deg;
+  margin-top: 1vh;
+  width: 15vw;
+  z-index: 6;
+  border-radius: 50%;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  background-color: var(--text-co);
+  animation: xoayVong 10s linear infinite;
+}
+
+.music-display h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-co);
+}
+.music-display div.music-name {
+  font-size: 3.6rem;
+  font-weight: 600;
+  color: var(--text-co);
+}
+.music-display div.music-author {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-co);
+}
