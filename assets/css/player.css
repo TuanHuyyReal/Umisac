@@ -2,6 +2,10 @@
   grid-area: player;
   background-color: var(--bg-co);
   display: flex;
+}
+.player-adjust {
+  width: 100%;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -87,4 +91,31 @@
   font-size: 2rem;
   font-weight: 600;
   color: var(--text-co);
+}
+
+.song-info {
+  position: absolute;
+  left: 1%;
+  top: 2%;
+  display: flex;
+}
+.song-info img {
+  width: 10%;
+  border-radius: 9px;
+}
+.song-info .song-title {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.song-info .song-title .song-name {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-co);
+}
+.song-info .song-title .song-artist {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--bri-co);
 }

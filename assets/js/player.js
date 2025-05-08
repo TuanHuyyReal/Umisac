@@ -75,6 +75,25 @@ playIconContainer.addEventListener("click", () => {
       }</div>
     </div>
     `;
+      document.querySelector(".player .song-info").innerHTML = `
+        <img src="${
+          JSON.parse(localStorage.getItem("currentUser")).currentPlaylist[
+            JSON.parse(localStorage.getItem("i"))
+          ].image
+        }" alt="song-cover" class="song-cover" />
+          <div class="song-title">
+            <h2 class="song-name">${
+              JSON.parse(localStorage.getItem("currentUser")).currentPlaylist[
+                JSON.parse(localStorage.getItem("i"))
+              ].name
+            }</h2>
+            <h3 class="song-artist">${
+              JSON.parse(localStorage.getItem("currentUser")).currentPlaylist[
+                JSON.parse(localStorage.getItem("i"))
+              ].author
+            }</h3>
+          </div>
+      `;
     }
     renderMusicDisplay();
     if (click % 2 !== 0) {
@@ -83,7 +102,7 @@ playIconContainer.addEventListener("click", () => {
       var update = setInterval(() => {
         current = Math.floor(audio.currentTime) + 1;
         const maxTime = audio.duration;
-
+        // check nếu current >= maxTime thi qua bai moi
         if (current >= maxTime) {
           clearInterval(update);
           state = "done";
@@ -92,6 +111,7 @@ playIconContainer.addEventListener("click", () => {
           localStorage.setItem("i", i);
           renderMusicDisplay();
         } else {
+          // neu khong thi update thoi gian
           currentTime.textContent =
             current % 60 < 10
               ? current / 60 < 10
@@ -103,6 +123,10 @@ playIconContainer.addEventListener("click", () => {
         }
         audio.addEventListener("loadedmetadata", () => {
           seekSlider.max = audio.duration;
+          current = 0;
+          seekSlider.value = current;
+          currentTime.textContent = "00:00";
+          setInterval(update);
         });
 
         audio.addEventListener("timeupdate", () => {
@@ -111,6 +135,7 @@ playIconContainer.addEventListener("click", () => {
             current = Math.floor(audio.currentTime) + 1;
             seekSlider.value = current;
           }
+          // cập nhật currentTime (thoi gian play)
           currentTime.textContent =
             current % 60 < 10
               ? current / 60 < 10
@@ -119,11 +144,13 @@ playIconContainer.addEventListener("click", () => {
               : current / 60 < 10
               ? `0${Math.floor(current / 60)}:${current % 60}`
               : `0${Math.floor(current / 60)}:${current % 60}`;
+
+          //cap nhap thoi gian khi dieu chinh thanh slider
           seekSlider.addEventListener("click", () => {
             seekSlider.dragging = true;
             audio.currentTime = seekSlider.value;
             current = Math.floor(audio.currentTime);
-
+            // cap nhat thoi gian theo value cua slider
             currentTime.textContent =
               seekSlider.value % 60 < 10
                 ? `0${Math.floor(seekSlider.value / 60)}:0${
@@ -134,7 +161,7 @@ playIconContainer.addEventListener("click", () => {
                   }`;
           });
         });
-
+        // neu audio dung thi cap nhat bai moi
         audio.addEventListener("ended", () => {
           state = "done";
           audio.src = `./${
@@ -143,8 +170,32 @@ playIconContainer.addEventListener("click", () => {
             ].audio
           }`;
           clearInterval(update);
-        });
+          if (i == playlistLength - 1) {
+            i = 0;
+          } else {
+            i++;
+          }
+          localStorage.setItem("i", i);
+          audio.src =
+            "./" +
+            JSON.parse(localStorage.getItem("currentUser")).currentPlaylist[
+              parseInt(localStorage.getItem("i"))
+            ].audio;
+          audio.currentTime = 0;
+          currentTime.textContent = "00:00";
+          current = 0;
+          seekSlider.value = 0;
+          renderMusicDisplay();
 
+          // cap nhat duration
+          duration.textContent = JSON.parse(
+            localStorage.getItem("currentUser")
+          ).currentPlaylist[parseInt(localStorage.getItem("i"))].time;
+          state = "play";
+          clearInterval(update);
+          setInterval(update);
+        });
+        // luu thoi gian
         localStorage.setItem("currentTime", currentTime.textContent);
         localStorage.setItem(
           "currentSong",
@@ -155,11 +206,14 @@ playIconContainer.addEventListener("click", () => {
           )
         );
         next.addEventListener("click", () => {
-          if (i == playlistLength - 1) {
-            i = 0;
-          } else {
-            i++;
-          }
+          setTimeout(() => {
+            if (i == playlistLength - 1) {
+              i = 0;
+            } else {
+              i++;
+            }
+          }, 10);
+          console.log(i);
           localStorage.setItem("i", i);
           audio.src =
             "./" +
@@ -174,11 +228,13 @@ playIconContainer.addEventListener("click", () => {
           clearInterval(update);
         });
         prev.addEventListener("click", () => {
-          if (i == 0) {
-            i = playlistLength - 1;
-          } else {
-            i--;
-          }
+          setTimeout(() => {
+            if (i == 0) {
+              i = playlistLength - 1;
+            } else {
+              i--;
+            }
+          }, 10);
           localStorage.setItem("i", i);
           audio.src =
             "./" +
@@ -192,7 +248,15 @@ playIconContainer.addEventListener("click", () => {
       }, 1000);
     } else {
       clearInterval(update);
+      audio.pause();
+      state = "pause";
+      console.log(audio);
       playIconImg.src = "assets/images/play.svg";
+      audio.addEventListener("pause", () => {
+        // clearInterval(update);
+        state = "pause";
+        playIconImg.src = "assets/images/play.svg";
+      });
     }
   }
 });
