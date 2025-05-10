@@ -98,13 +98,15 @@
   left: 1%;
   top: 2%;
   display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 .song-info img {
   width: 10%;
   border-radius: 9px;
 }
 .song-info .song-title {
-  margin-left: 1rem;
+  /* margin: 2rem 0 0 1rem; */
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -116,6 +118,6 @@
 }
 .song-info .song-title .song-artist {
   font-size: 1.3rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--bri-co);
 }

@@ -2,8 +2,7 @@ import { UMISAC_API } from "./config.js";
 // const playlistContainer = document.querySelector("ul.playlists");
 const homeContent = document.querySelector(".content");
 
-let currentPlaylist =
-  JSON.parse(localStorage.getItem("currentUser")).currentPlaylist || [];
+let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
 (async () => {
   const response = await fetch(UMISAC_API);
   const songData = await response.json();
@@ -89,17 +88,20 @@ let currentPlaylist =
             console.log(`remove from playlist ${song.name}`);
           } else if (btn.classList.contains("play-song")) {
             console.log(`play song ${song.name}`);
-
-            // console.log(currentPlaylist);
-            // console.log(currentPlaylist);
+            currentPlaylist = [];
             currentPlaylist.push(song);
             currentPlaylist = [...new Set(currentPlaylist)];
-            // currentPlaylist = [];
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
             currentUser.currentPlaylist = currentPlaylist;
-            console.log(currentUser);
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
-            console.log(JSON.parse(localStorage.getItem("currentUser")));
+            localStorage.setItem(
+              "currentPlaylist",
+              JSON.stringify(currentPlaylist)
+            );
+            console.log(JSON.parse(localStorage.getItem("currentPlaylist")));
+            i = 0;
+            localStorage.setItem("i", JSON.stringify(i));
+            console.log(JSON.parse(localStorage.getItem("i")));
           }
         });
       });
