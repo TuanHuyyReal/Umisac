@@ -24,6 +24,17 @@ let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
       menu.style.top = `${posY}px`;
       menu.classList.remove("hidden");
       document.querySelector("main").appendChild(menu);
+      // check neu menu bi an
+      const menuRect = menu.getBoundingClientRect();
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      if (menuRect.right > windowWidth) {
+        menu.style.left = `calc(${posX}px - ${menuRect.width}px + 5rem)`;
+      }
+      if (menuRect.bottom > windowHeight) {
+        menu.style.top = `calc(${posY}px - ${menuRect.height}px + 10rem)`;
+      }
+
       document
         .querySelector(".songs-adjust span.remove")
         .addEventListener("click", () => {
@@ -39,11 +50,22 @@ let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
       console.log(albumLists);
       document.querySelectorAll(".songs-adjust button").forEach((btn) => {
         btn.addEventListener("click", () => {
+          // add to playlist
           if (btn.classList.contains("add-btn")) {
             console.log(albumLists);
             albumLists.classList.remove("hidden");
             albumLists.style.left = `calc(${posX}px + 20vw)`;
             albumLists.style.top = `${posY}px`;
+            // check neu menu bi an
+            const albumRect = album.getBoundingClientRect();
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            if (albumRect.right > windowWidth) {
+              album.style.left = `calc(${posX}px - ${albumRect.width}px + 5rem)`;
+            }
+            if (albumRect.bottom > windowHeight) {
+              album.style.bottom = `calc(${posY}px - ${albumRect.height}px + 10rem)`;
+            }
             // select playlist
             const arrOfLi = [];
             document

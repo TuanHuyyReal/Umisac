@@ -144,25 +144,40 @@ albums.forEach((album) => {
                   });
                 });
             } else if (btn.classList.contains("remove-btn")) {
-              album.songs.forEach((song) => {
-                if (song.classList.contains(`${index}`)) {
-                  album.songs.splice(index, 1);
-                  // luu albumContainer vao localStorage
-                  localStorage.setItem(
-                    "currentUser",
-                    JSON.stringify({
-                      ...JSON.parse(localStorage.getItem("currentUser")),
-                      albumContainer: albums,
-                    })
-                  );
-                  console.log(JSON.parse(localStorage.getItem("currentUser")));
-                }
-              });
+              const clickedSong = album.songs[index];
+              console.log(clickedSong);
+              album.songs.splice(index, 1);
+              albums[albums.indexOf(album)] = album;
+              console.log(albums);
+              localStorage.setItem(
+                "currentUser",
+                JSON.stringify({
+                  ...JSON.parse(localStorage.getItem("currentUser")),
+                  albumContainer: albums,
+                })
+              );
+              document.querySelector("ul.songs").innerHTML = "";
+              for (let i = 0; i < album.songs.length; i++) {
+                numArr.push(i);
+                let song = album.songs[i];
+                document.querySelector("ul.songs").innerHTML += `
+                <li class = "${i}">
+                  <div class="song-info">
+                    <div class="btn-container">
+                    <img src="assets/images/play.svg" alt="" class="play-pause ${i}" />
+                    </div>
+                    <img src="${song.image}" alt="song-icon" class="song-icon" />
+                    <div>
+                      <h3 class="song-title">${song.name}</h3>
+                      <h4 class="song-author">${song.author}</h4>
+                    </div>
+                  </div>
+                  <img src="assets/images/more.svg" alt="" class="more-icon ${i}" />
+                </li>`;
+              }
             } else if (btn.classList.contains("play-song")) {
               console.log(`play song ${song.name}`);
 
-              // console.log(currentPlaylist);
-              // console.log(currentPlaylist);
               currentPlaylist.push(song);
               currentPlaylist = [...new Set(currentPlaylist)];
               // currentPlaylist = [];
@@ -180,7 +195,8 @@ albums.forEach((album) => {
     });
     const albumPlay = document.querySelector(".album-info img.play-pause");
     albumPlay.addEventListener("click", () => {
-      localStorage.setItem("i", "0");
+      localStorage.setItem("i", 0);
+      document.querySelector("img.play-pause").src = "assets/images/pause.svg";
       playMusic();
     });
   }
