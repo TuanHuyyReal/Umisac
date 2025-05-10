@@ -25,6 +25,17 @@ let currentPlaylist =
       menu.style.top = `${posY}px`;
       menu.classList.remove("hidden");
       document.querySelector("main").appendChild(menu);
+
+      const menuRect = menu.getBoundingClientRect();
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      if (menuRect.right > windowWidth) {
+        menu.style.left = `calc(${posX}px - ${menuRect.width}px + 5rem)`;
+      }
+      if (menuRect.bottom > windowHeight) {
+        menu.style.top = `calc(${posY}px - ${menuRect.height}px + 10rem)`;
+      }
+
       document
         .querySelector(".songs-adjust span.remove")
         .addEventListener("click", () => {

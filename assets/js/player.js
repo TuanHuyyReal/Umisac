@@ -30,7 +30,12 @@ seekSlider.setAttribute(
   parseInt(duration.textContent.split(":")[0] * 60) +
     parseInt(duration.textContent.split(":")[1])
 );
-
+function reset() {
+  audio.currentTime = 0;
+  currentTime.textContent = "00:00";
+  seekSlider.value = 0;
+  current = 0;
+}
 // clearInterval(update);
 playIconContainer.addEventListener("click", () => {
   click++;
@@ -122,6 +127,7 @@ playIconContainer.addEventListener("click", () => {
               : `0${Math.floor(current / 60)}:${current % 60}`;
         }
         audio.addEventListener("loadedmetadata", () => {
+          reset();
           seekSlider.max = audio.duration;
           current = 0;
           seekSlider.value = current;
