@@ -57,14 +57,14 @@ let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
             albumLists.style.left = `calc(${posX}px + 20vw)`;
             albumLists.style.top = `${posY}px`;
             // check neu menu bi an
-            const albumRect = album.getBoundingClientRect();
+            const albumRect = albumLists.getBoundingClientRect();
             const windowWidth = window.innerWidth;
             const windowHeight = window.innerHeight;
             if (albumRect.right > windowWidth) {
-              album.style.left = `calc(${posX}px - ${albumRect.width}px + 5rem)`;
+              albumLists.style.left = `calc(${posX}px - ${albumRect.width}px - 10vw)`;
             }
             if (albumRect.bottom > windowHeight) {
-              album.style.bottom = `calc(${posY}px - ${albumRect.height}px + 10rem)`;
+              albumLists.style.top = `calc(${posY}px - ${albumRect.height}px + 10rem)`;
             }
             // select playlist
             const arrOfLi = [];
@@ -104,6 +104,8 @@ let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
                   })
                 );
                 console.log(JSON.parse(localStorage.getItem("currentUser")));
+                menu.classList.add("hidden");
+                albumLists.classList.add("hidden");
               });
             });
           } else if (btn.classList.contains("remove-btn")) {

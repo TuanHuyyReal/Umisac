@@ -24,9 +24,27 @@
     <link rel="stylesheet" href="assets/css/home.css" />
     <link rel="stylesheet" href="assets/css/player.css" />
     <link rel="stylesheet" href="assets/css/album.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link rel="stylesheet" href="assets/css/loader.css" />
   </head>
 
   <body>
+    <!-- From Uiverse.io by JkHuger -->
+    <div class="loader">
+      <ul class="wave-menu">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+
     <header>
       <!-- place navbar here -->
       <nav class="nav navbar">
@@ -117,6 +135,16 @@
               value="0"
             />
             <span class="duration">0:00</span>
+          </div>
+          <div class="volume-adjust">
+            <img src="assets/images/volume.svg" alt="volume" class="volume" />
+            <input
+              type="range"
+              name="volume-change"
+              id="volume-change"
+              min="0"
+              max="100"
+            />
           </div>
         </div>
       </div>
@@ -247,6 +275,7 @@
     ></script>
 
     <script type="module" src="assets/js/config.js"></script>
+    <script src="assets/js/preload.js"></script>
     <script type="module" src="assets/js/adjust-album.js"></script>
     <script type="module" src="assets/js/playlists.js"></script>
     <script type="module" src="assets/js/search.js"></script>

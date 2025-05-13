@@ -4,11 +4,15 @@ const audioPlayerContainer = document.querySelector(".player-timer");
 const currentTime = document.querySelector(".current-time");
 const duration = document.querySelector(".duration");
 const seekSlider = document.querySelector(".seek-slider");
-const volumeSlider = document.querySelector(".volume-slider");
+const volumeSlider = document.querySelector(
+  'input[type="range"]#volume-change'
+);
+const volumeIcon = document.querySelector(".volume-adjust img");
 const next = document.querySelector(".next-icon");
 const prev = document.querySelector(".prev-icon");
 const audio = document.querySelector("audio");
 const musicDisplay = document.querySelector(".music-display");
+
 playIconImg.src = "assets/images/play.svg";
 currentTime.textContent = localStorage.getItem("currentTime") || "00:00";
 state = "";
@@ -127,6 +131,7 @@ function playMusic() {
           current = 0;
           seekSlider.value = current;
           currentTime.textContent = "00:00";
+          audio.volume = volumeSlider.value / 100;
           setInterval(update);
         });
 
@@ -147,6 +152,53 @@ function playMusic() {
               : `0${Math.floor(current / 60)}:${current % 60}`;
 
           //cap nhap thoi gian khi dieu chinh thanh slider
+          document.addEventListener("keyup", (e) => {
+            if (e.code == "Spacebar") {
+              playMusic();
+            }
+            if (e.code == "ArrowRight") {
+              setTimeout(() => {
+                if (i == playlistLength - 1) {
+                  i = 0;
+                } else {
+                  i++;
+                }
+              }, 10);
+              localStorage.setItem("i", i);
+              audio.src =
+                "./" +
+                JSON.parse(localStorage.getItem("currentPlaylist"))[
+                  parseInt(localStorage.getItem("i"))
+                ].audio;
+              renderMusicDisplay();
+              duration.textContent = JSON.parse(
+                localStorage.getItem("currentPlaylist")
+              )[parseInt(localStorage.getItem("i"))].time;
+              state = "play";
+              clearInterval(update);
+            }
+            if (e.code == "ArrowLeft") {
+              setTimeout(() => {
+                if (i == 0) {
+                  i = playlistLength - 1;
+                } else {
+                  i--;
+                }
+              }, 10);
+              localStorage.setItem("i", i);
+              audio.src =
+                "./" +
+                JSON.parse(localStorage.getItem("currentPlaylist"))[
+                  parseInt(localStorage.getItem("i"))
+                ].audio;
+              renderMusicDisplay();
+              duration.textContent = JSON.parse(
+                localStorage.getItem("currentPlaylist")
+              )[parseInt(localStorage.getItem("i"))].time;
+              state = "play";
+              clearInterval(update);
+            }
+          });
           seekSlider.addEventListener("click", () => {
             seekSlider.dragging = true;
             audio.currentTime = seekSlider.value;
@@ -210,10 +262,8 @@ function playMusic() {
           setTimeout(() => {
             if (i == playlistLength - 1) {
               i = 0;
-              console.log(i);
             } else {
               i++;
-              console.log(i);
             }
           }, 10);
           localStorage.setItem("i", i);
@@ -246,6 +296,18 @@ function playMusic() {
           renderMusicDisplay();
           state = "play";
           clearInterval(update);
+        });
+        volumeSlider.addEventListener("input", () => {
+          audio.volume = volumeSlider.value / 100;
+        });
+        volumeIcon.addEventListener("click", () => {
+          if (audio.volume == 0) {
+            audio.volume = 0.5;
+            volumeIcon.src = "./assets/images/volume.svg";
+          } else {
+            audio.volume = 0;
+            volumeIcon.src = "./assets/images/mute.svg";
+          }
         });
       }, 1000);
     } else {
