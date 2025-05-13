@@ -24,7 +24,7 @@ let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
       menu.style.top = `${posY}px`;
       menu.classList.remove("hidden");
       document.querySelector("main").appendChild(menu);
-      // check neu menu bi an
+
       const menuRect = menu.getBoundingClientRect();
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
