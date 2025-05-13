@@ -1,0 +1,119 @@
+/* index */
+
+/* laptop */
+@media screen and (max-width: 1366px) {
+  .f-container a.direct {
+    max-width: 8vh;
+    max-height: 8vh;
+    padding: 0;
+  }
+  img.avatar-display {
+    display: inline-flex;
+    max-width: 8vh;
+    max-height: 8vh;
+  }
+  section.content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  div.player {
+    height: 15vh;
+  }
+}
+/* tablet width 810 */
+@media screen and (max-width: 810px) {
+  main {
+    grid-template-areas:
+      "aside section section section section"
+      "aside section section section section"
+      "aside section section section section"
+      "player player player player player";
+  }
+  .music-display {
+    display: none;
+  }
+  .f-container a.direct {
+    max-width: 6vh;
+    max-height: 6vh;
+    padding: 0;
+  }
+  img.avatar-display {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    display: inline-flex;
+    max-width: 6vh;
+    max-height: 6vh;
+  }
+  section.content {
+    grid-template-columns: repeat(3, 23vw);
+    width: 80vw;
+  }
+}
+/* phone with 425 */
+@media screen and (max-width: 425px) {
+  body {
+    width: 360px !important;
+  }
+  .f-container a.home-direct {
+    display: none !important;
+  }
+  .search-bar {
+    width: 20rem !important;
+  }
+  .search-bar input[type="text"] {
+    width: 10rem !important;
+  }
+  section.content {
+    grid-template-columns: repeat(1, 30vw);
+    height: 65vh;
+  }
+  section.content div.song-card {
+    width: 60vw;
+  }
+  div.songs-adjust {
+    scale: 0.7;
+    width: 50vw;
+  }
+  .songs-adjust ul {
+    width: 80%;
+  }
+  .songs-adjust ul li {
+    width: 100%;
+  }
+  .player {
+    margin-bottom: 25%;
+    display: flex;
+  }
+  .player-adjust .player-controls,
+  .player-adjust .player-timer {
+    position: absolute;
+    left: 2%;
+  }
+  .player-controls,
+  .volume-adjust {
+    scale: 0.8;
+  }
+  .player-controls {
+    top: 8%;
+  }
+  .player-timer {
+    bottom: 5%;
+  }
+  .volume-adjust {
+    right: 15%;
+    top: 8%;
+  }
+  .song-info {
+    position: absolute;
+    left: 0;
+    top: -50%;
+    background-color: var(--bg-co);
+    padding: 1.2rem 2rem;
+    border: 1px solid var(--pri-co);
+  }
+  @media screen and (max-height: 740px) {
+    .player {
+      margin-top: 20%;
+    }
+  }
+}

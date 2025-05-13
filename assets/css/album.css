@@ -1,5 +1,150 @@
 .content {
+  display: flex grid;
+  flex-direction: column;
+  gap: 0 !important;
+  grid-template-areas:
+    "ab-info ab-info ab-info ab-info"
+    "ab-song ab-song ab-song ab-song"
+    "ab-song ab-song ab-song ab-song"
+    "ab-song ab-song ab-song ab-song";
+  padding: 0 !important;
+  overflow-y: unset !important  ;
+}
+.album-info {
+  grid-area: ab-info;
+  height: 100%;
+  position: relative;
+  background-color: var(--sec-co);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  color: var(--text-co);
+}
+.album-info .info {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  color: var(--text-co);
+}
+.album-info .info img {
+  scale: 1.2;
+  width: 5%;
+  min-width: 10rem;
+  min-height: 6rem;
+  padding: 1rem;
+  background-color: var(--pri-co);
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+}
+.album-info .album-title {
+  font-size: 1.8rem;
+  font-family: "Courier New";
+  background-color: var(--pri-co);
+  border-radius: 0.9rem;
+  padding: 1rem;
+}
+.album-info .album-title h2 {
+  font-size: 2.3rem;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.album-info .album-title h3 {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.album-info .btn-container {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.album-info .btn-container img.play-pause {
+  min-width: none;
+  width: calc(20% + 2rem);
+  padding: 0.5rem;
+  background-color: var(--pri-co);
+  border-radius: 50%;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  scale: 1;
+}
+img.play-pause:hover {
+  animation: rotate 1s ease-in-out;
+}
+.content .songs-container {
+  grid-area: ab-song;
+  padding: 1rem;
+  height: 100%;
+  color: var(--text-co);
+  background-color: var(--pri-co);
+}
+ul.songs {
+  max-height: 50vh;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  overflow-y: auto;
+}
+ul.songs li {
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  background-color: var(--bg-co);
+  font-size: 1.6rem;
+  position: relative;
+}
+ul.songs li div.song-info {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background-color: var(--bg-co);
+  font-size: 1.6rem;
+  position: relative;
+}
+.song-icon {
+  width: 10%;
+  border-radius: 9px;
+}
+ul.songs li div div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+ul.songs li h3 {
+  font-size: 1.9rem;
+  font-weight: 600;
+}
+ul.songs .btn-container {
+  position: relative;
+  left: 1rem;
+  width: 3vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ul.songs img.play-pause {
+  width: 100%;
+  cursor: pointer;
+  scale: 1;
+}
+ul.songs li img.more-icon {
+  width: calc(2vw + 1rem);
+  position: relative;
+  right: 2rem;
+  cursor: pointer;
+  scale: 1;
+  padding: 0.5rem;
+  transition: all 0.2s linear;
+  border-radius: 9px;
+}
+ul.songs li img.more-icon:hover {
+  background-color: var(--text-co);
 }

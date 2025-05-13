@@ -4,12 +4,66 @@ const playlistsCards = document.querySelectorAll(
 );
 
 playlistsCards.forEach((card) => {
-  if (card.getAttribute("id") == "create-playlist") {
-    // playlistsCards.slice(playlistsCards.indexOf(card), 1);
-    console.log(card);
+  if (card.getAttribute("id") !== "create-playlist") {
+    card.addEventListener("click", () => {
+      localStorage.setItem("clickedAlbum", card.getAttribute("id"));
+      window.location.href = `./album.html`;
+    });
+  } else {
+    card.addEventListener("click", () => {
+      document.querySelector(".playlist-form").classList.remove("hidden");
+      document
+        .querySelector("form span.remove")
+        .addEventListener("click", () => {
+          document.querySelector(".playlist-form").classList.add("hidden");
+        });
+      let boxes = document.querySelectorAll("input[type=checkbox]");
+      boxes.forEach((b) => b.addEventListener("change", tick));
+      function tick(e) {
+        let state = e.target.checked; // save state of changed checkbox
+        boxes.forEach((b) => (b.checked = false)); // clear all checkboxes
+        e.target.checked = state; // restore state of changed checkbox
+      }
+
+      document
+        .querySelector("button.playlist-sbm-btn")
+        .addEventListener("click", () => {
+          document.querySelector(".playlist-form").classList.add("hidden");
+          let album = {
+            albumImage: document.querySelector(`input[type="checkbox"]:checked`)
+              .value,
+            albumName: document.querySelector("#playlist-name-input").value,
+            albumDesc: document.querySelector("#playlist-desc-input").value,
+            albumId: Math.random().toString(16).slice(2),
+            songs: [],
+          };
+          albumContainer.push(album);
+          let currentUser = {
+            username: JSON.parse(localStorage.getItem("currentUser")).username,
+            email: JSON.parse(localStorage.getItem("currentUser")).email,
+            password: JSON.parse(localStorage.getItem("currentUser")).password,
+            albumContainer: albumContainer,
+          };
+          console.log(currentUser);
+          localStorage.setItem("currentUser", JSON.stringify(currentUser));
+          const updatedUsers = JSON.parse(localStorage.getItem("users")).map(
+            (user) => {
+              if (
+                user.email ==
+                JSON.parse(localStorage.getItem("currentUser")).email
+              ) {
+                return JSON.parse(localStorage.getItem("currentUser"));
+              } else return user;
+            }
+          );
+          console.log(updatedUsers);
+          localStorage.setItem("users", JSON.stringify(updatedUsers));
+          // console.log(JSON.parse(localStorage.getItem("currentUser")));
+          const reload = setTimeout(() => {
+            clearTimeout(reload);
+            location.reload();
+          }, 5000);
+        });
+    });
   }
-  card.addEventListener("click", () => {
-    localStorage.setItem("clickedAlbum", card.getAttribute("id"));
-    window.location.href = `./album.html`;
-  });
 });

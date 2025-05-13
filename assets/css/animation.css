@@ -44,3 +44,24 @@
     rotate: 360deg;
   }
 }
+@keyframes bold {
+  0% {
+    font-weight: 400;
+  }
+  50% {
+    font-weight: 600;
+  }
+  100% {
+    font-weight: 400;
+  }
+}
+@keyframes appear {
+  from {
+    scale: 0;
+    opacity: 0.5;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}

@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&family=Oswald:wght@200..700&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 [data-theme="light"] {
-  --bg-co: #d1ecff;
-  --pri-co: #c8e9ee;
-  --sec-co: #6db0db;
-  --bri-co: #34729b;
-  --text-co: #2c7ea7;
+  --bg-co: #213448;
+  --pri-co: #547792;
+  --sec-co: #94b4c1;
+  --bri-co: #ecefca;
+  --text-co: #d8ce97;
 }
 * {
   margin: 0;
@@ -34,6 +34,19 @@ body {
 .invisible {
   visibility: hidden !important;
 }
+
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 99vw;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
 header {
   width: 100vw;
   height: 10vh;
@@ -44,9 +57,6 @@ header {
   display: flex;
   flex-direction: row;
   border-bottom: #2c7ea7 1px solid;
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* padding: 1rem; */
 }
 nav.navbar {
   width: 100%;
@@ -98,7 +108,6 @@ header nav.navbar .functional a.direct:hover {
 /* search bar styles */
 .search-bar {
   position: relative;
-  /* left: 50%; */
   width: 30rem;
   height: 6rem;
   border-radius: 3rem;
