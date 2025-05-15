@@ -38,13 +38,6 @@ function renderAlbums() {
           <a href ="./album.html"><img src="assets/images/folder-icons/${album.albumImage}.png" alt="${album.albumName}" class="card-image" /></a>
         </li>
         `;
-        document.querySelector("ul.playlists-select").innerHTML += `
-        <li class="playlist-card" title = "${album.albumName}" id = "${album.albumId}">
-          <img src="assets/images/folder-icons/${album.albumImage}.png" alt="${album.albumName}" class="card-image" />
-          <h2 class = "playlist-name">${album.albumName}</h2>
-
-          </li>
-        `;
       }
     }
   });

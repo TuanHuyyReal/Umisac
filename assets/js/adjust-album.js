@@ -5,7 +5,6 @@ const albumAuthor = document.querySelector(".album-desc");
 const clickedAlbum = localStorage.getItem("clickedAlbum");
 console.log(clickedAlbum);
 const albums = JSON.parse(localStorage.getItem("currentUser")).albumContainer;
-
 albums.forEach((album) => {
   if (album.albumId == clickedAlbum) {
     localStorage.setItem("currentPlaylist", JSON.stringify(album.songs));
@@ -57,7 +56,7 @@ albums.forEach((album) => {
           parseInt(duration.textContent.split(":")[0] * 60) +
             parseInt(duration.textContent.split(":")[1])
         );
-        playMusic();
+        playMusic(playlistLength);
       });
     });
     moreIcon.forEach((moreBtn, index) => {
@@ -175,6 +174,7 @@ albums.forEach((album) => {
                   <img src="assets/images/more.svg" alt="" class="more-icon ${i}" />
                 </li>`;
               }
+              location.reload();
             } else if (btn.classList.contains("play-song")) {
               console.log(`play song ${song.name}`);
 
@@ -197,7 +197,9 @@ albums.forEach((album) => {
     albumPlay.addEventListener("click", () => {
       localStorage.setItem("i", 0);
       document.querySelector("img.play-pause").src = "assets/images/pause.svg";
-      playMusic();
+      reset();
+      renderTime();
+      playMusic(playlistLength);
     });
   }
 });
