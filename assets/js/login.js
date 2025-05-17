@@ -14,9 +14,10 @@ submit.addEventListener("click", (event) => {
   ).value;
   let loginPw = document.querySelector(".login-form input#password").value;
   let loginEmail = document.querySelector(".login-form input#email").value;
-  let users = localStorage.getItem("users");
+  let users = JSON.parse(localStorage.getItem("users"));
 
   function success() {
+    loginMessage.classList.add("hidden");
     const avatar = JSON.parse(localStorage.getItem("users")).map((user) => {
       if (user.email == loginEmail) {
         if (!user.avatar) {
@@ -55,32 +56,28 @@ submit.addEventListener("click", (event) => {
     );
   }
 
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].email != loginEmail) {
-      continue;
+  users.forEach((user) => {
+    if (
+      user.email == loginEmail &&
+      user.password == loginPw &&
+      user.username == loginUsername
+    ) {
+      success();
     } else {
-      if (
-        loginUsername != localStorage.getItem("users").username ||
-        loginPw != localStorage.getItem("users").password
-      ) {
-        console.log(localStorage.getItem("users"));
-        loginMessage.classList.remove("hidden");
-        loginMessage.innerHTML = "Invalid username or password";
-      } else {
-        success();
-      }
+      loginMessage.classList.remove("hidden");
+      loginMessage.innerHTML = "Invalid username or password";
     }
-  }
+  });
 
-  if (!loginUsername || !loginPw) {
+  if (!loginUsername || !loginPw || !loginEmail) {
     loginMessage.classList.remove("hidden");
     loginMessage.innerHTML = "Please enter enough infos";
-  } else if (loginUsername.trim() == "" || loginPw.trim() == "") {
+  } else if (
+    loginUsername.trim() == "" ||
+    loginPw.trim() == "" ||
+    loginEmail.trim() == ""
+  ) {
     loginMessage.classList.remove("hidden");
     loginMessage.innerHTML = "Please enter enough infos";
-  } else {
-    success();
   }
-
-  // console.log([loginUsername, loginPw]);
 });

@@ -100,12 +100,14 @@ section.content {
   padding: 2rem;
   border: 1px solid var(--sec-co);
   height: 80vh;
+  max-width: 50vw;
   border-top: none;
   border-bottom: none;
   display: grid;
   grid-template-columns: repeat(4, 0.5fr);
   gap: 2rem;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 div.music-display {
   grid-area: music-display;
@@ -184,6 +186,7 @@ ul.playlists {
   padding: 2rem;
   border-top: none;
   border-bottom: none;
+  min-width: 15vw;
 }
 .playlists li.playlist-card button.create-playlist-button {
   font-size: 3.6rem;
@@ -214,6 +217,25 @@ ul.playlists {
   animation: appear linear;
   animation-timeline: view();
   animation-range: entry 0% cover 23%;
+}
+.playlists li.playlist-card button.more {
+  z-index: 5;
+  width: 15%;
+  padding: 0.2rem;
+  position: absolute;
+  right: 5%;
+  top: 8%;
+  border-radius: 6px;
+  border: 0.2px solid var(--bri-co);
+  background-color: var(--bri-co);
+  transition: all 0.2s ease-out;
+  & img {
+    width: 70%;
+  }
+}
+
+.playlists li.playlist-card button.more:hover {
+  background-color: var(--text-co);
 }
 form.playlist-form {
   position: fixed;

@@ -7,6 +7,9 @@ if (albumContainer.length !== 0) {
     if (album == null) {
       albumContainer.shift(albumContainer.indexOf(album), 1);
       console.log(albumContainer);
+    } else if (!album) {
+      albumContainer.shift(albumContainer.indexOf(album), 1);
+      console.log(albumContainer);
     }
   });
   localStorage.setItem(
@@ -27,15 +30,24 @@ albumContainer.forEach((array) => {
     albumContainer.shift(albumContainer.indexOf(array), 1);
   }
 });
+
 function renderAlbums() {
   albumContainer.forEach((album) => {
     if (
       !(albumContainer.length == 0 || !album || album == {} || album == null)
     ) {
-      if (album.albumImage && album.albumName && album.albumDesc) {
+      if (
+        album.albumImage &&
+        album.albumName &&
+        album.albumDesc &&
+        album.albumId
+      ) {
         asideUl.innerHTML += `
-        <li class="playlist-card" title = "${album.albumName}" id="${album.albumId}">
+        <li class="playlist-card" title = "${album.albumName}" id="${album.albumId}" oncontextmenu="return false">
           <a href ="./album.html"><img src="assets/images/folder-icons/${album.albumImage}.png" alt="${album.albumName}" class="card-image" /></a>
+          <button class="more hidden">
+            <img src = "assets/images/more-b.svg">
+          </button>
         </li>
         `;
       }
@@ -92,9 +104,6 @@ document
         console.log(updatedUsers);
         localStorage.setItem("users", JSON.stringify(updatedUsers));
         // console.log(JSON.parse(localStorage.getItem("currentUser")));
-        const reload = setTimeout(() => {
-          clearTimeout(reload);
-          location.reload();
-        }, 5000);
+        renderAlbums();
       });
   });

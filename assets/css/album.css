@@ -109,8 +109,9 @@ ul.songs li div.song-info {
   font-size: 1.6rem;
   position: relative;
 }
-.song-icon {
-  width: 10%;
+img.song-icon {
+  width: 5vw;
+  max-height: 5vw;
   border-radius: 9px;
 }
 ul.songs li div div {

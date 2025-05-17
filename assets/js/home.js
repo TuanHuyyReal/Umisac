@@ -75,16 +75,15 @@ let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
               });
             }
             renderAbLists();
-            console.log(albumLists);
             albumLists.classList.remove("hidden");
             albumLists.style.left = `calc(${posX}px + 20vw)`;
-            albumLists.style.top = `${posY}px`;
+            albumLists.style.top = `${posY}px + 10rem`;
             // check neu menu bi an
             const albumRect = albumLists.getBoundingClientRect();
             const windowWidth = window.innerWidth;
             const windowHeight = window.innerHeight;
             if (albumRect.right > windowWidth) {
-              albumLists.style.right = `calc(${posX}px - ${albumRect.width}px - 10vw)`;
+              albumLists.style.right = `calc(${posX}px - ${albumRect.width}px + 10rem)`;
             }
             if (albumRect.bottom > windowHeight) {
               albumLists.style.top = `calc(${posY}px - ${albumRect.height}px + 10rem)`;
@@ -100,24 +99,25 @@ let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
                   if (!arrOfLi.includes(li)) {
                     arrOfLi.push(li);
                   } else arrOfLi.splice(arrOfLi.indexOf(li), 1);
-                  console.log(arrOfLi);
                 });
               });
             document.querySelector(".cfm-btn").addEventListener("click", () => {
-              console.log(arrOfLi);
               arrOfLi.map((li) => {
                 const albums = JSON.parse(
                   localStorage.getItem("currentUser")
                 ).albumContainer;
-                albums.forEach((album) => {
-                  console.log(li);
+                albums.map((album) => {
                   if (album == null) {
                     albums.shift(albums.indexOf(album), 1);
-                    // console.log(albums);
                   }
                   if (album.albumId == li.getAttribute("id")) {
-                    album.songs.push(song);
-                    console.log(album);
+                    if (
+                      !album.songs.find(
+                        (selectSong) => selectSong.name == song.name
+                      )
+                    ) {
+                      album.songs.push(song);
+                    }
                   }
                   return album;
                 });
@@ -129,7 +129,6 @@ let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
                     albumContainer: albums,
                   })
                 );
-                console.log(JSON.parse(localStorage.getItem("currentUser")));
                 menu.classList.add("hidden");
                 albumLists.classList.add("hidden");
               });
@@ -149,10 +148,6 @@ let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
                 // tìm album có chứa song dc chọn
                 if (abSong.name == song.name && !arr.includes(album)) {
                   arr.push(album);
-                  console.log(album);
-                  console.log(
-                    `remove song ${song.name} from album ${album.albumName}`
-                  );
                   playlistSelect.innerHTML += `
                   <li class="playlist-card" id="${album.albumId}">
                     <img src="assets/images/folder-icons/${album.albumImage}.png" alt="playlist-icon" class="playlist-icon" />
@@ -167,8 +162,7 @@ let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
             playlistList.querySelector(".cfm-btn").textContent = "REMOVE!";
             playlistList.classList.remove("hidden");
             playlistList.style.left = `calc(${posX}px + 15vw)`;
-            playlistList.style.top = `${posY}px`;
-            console.log(playlistList);
+            playlistList.style.top = `${posY}px + 10rem`;
             // check neu menu bi an
             const plListRect = playlistList.getBoundingClientRect();
             const windowWidth = window.innerWidth;
@@ -177,7 +171,7 @@ let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
               playlistList.style.left = `calc(${posX}px - ${plListRect.width}px - 10vw)`;
             }
             if (plListRect.bottom > windowHeight) {
-              playlistList.style.top = `calc(${posY}px - ${plListRect.height}px + 10rem)`;
+              playlistList.style.bottom = `calc(${posY}px - ${plListRect.height}px + 10rem)`;
             }
 
             let arrOfLi = [];
@@ -190,7 +184,6 @@ let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
                   if (!arrOfLi.includes(li)) {
                     arrOfLi.push(li);
                   } else arrOfLi.splice(arrOfLi.indexOf(li), 1);
-                  console.log(arrOfLi);
                 });
               });
             document.querySelector(".cfm-btn").addEventListener("click", () => {
@@ -201,11 +194,9 @@ let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
                 albums.forEach((album) => {
                   if (album.albumId == li.getAttribute("id")) {
                     const songs = album.songs;
-                    console.log(songs, song);
                     songs.forEach((abSong) => {
                       if (abSong.name == song.name) {
                         songs.splice(songs.indexOf(abSong), 1);
-                        console.log(songs);
                         localStorage.setItem(
                           "currentUser",
                           JSON.stringify({
@@ -223,14 +214,12 @@ let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
             });
           } else if (btn.classList.contains("play-song")) {
             // play btn
-            console.log(`play song ${song.name}`);
             currentPlaylist = [];
             currentPlaylist.push(song);
             localStorage.setItem(
               "currentPlaylist",
               JSON.stringify(currentPlaylist)
             );
-            console.log(JSON.parse(localStorage.getItem("currentPlaylist")));
             i = 0;
             localStorage.setItem("i", JSON.stringify(i));
             reset();
@@ -244,11 +233,3 @@ let currentPlaylist = JSON.parse(localStorage.getItem("currentPlaylist")) || [];
     });
   });
 })();
-// console.log(JSON.parse(localStorage.getItem("currentUser")).albumContainer);
-const notice = document.querySelector(".notice");
-const remove = notice.querySelectorAll(".remove");
-remove.forEach((r) =>
-  r.addEventListener("click", () => {
-    notice.classList.add("hidden");
-  })
-);

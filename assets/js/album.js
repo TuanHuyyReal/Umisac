@@ -5,6 +5,7 @@ const playlistsCards = document.querySelectorAll(
 
 playlistsCards.forEach((card) => {
   if (card.getAttribute("id") !== "create-playlist") {
+    var moreBtn = card.querySelector("button.more");
     card.addEventListener("click", () => {
       localStorage.setItem("clickedAlbum", card.getAttribute("id"));
       window.location.href = `./album.html`;
@@ -44,7 +45,6 @@ playlistsCards.forEach((card) => {
             password: JSON.parse(localStorage.getItem("currentUser")).password,
             albumContainer: albumContainer,
           };
-          console.log(currentUser);
           localStorage.setItem("currentUser", JSON.stringify(currentUser));
           const updatedUsers = JSON.parse(localStorage.getItem("users")).map(
             (user) => {
@@ -56,9 +56,7 @@ playlistsCards.forEach((card) => {
               } else return user;
             }
           );
-          console.log(updatedUsers);
           localStorage.setItem("users", JSON.stringify(updatedUsers));
-          // console.log(JSON.parse(localStorage.getItem("currentUser")));
           const reload = setTimeout(() => {
             clearTimeout(reload);
             location.reload();

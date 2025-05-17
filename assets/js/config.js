@@ -2,35 +2,36 @@ export const UMISAC_API =
   "https://68039ba20a99cb7408ec7fa6.mockapi.io/umisac/item_song";
 window.handleSignOut = () => {
   localStorage.removeItem("currentUser");
+  localStorage.removeItem("currentSong");
+  localStorage.removeItem("clickedAlbum");
+  localStorage.removeItem("currentPlaylist");
+  localStorage.removeItem("currentTime");
+  localStorage.removeItem("i");
   location.reload();
 };
 let accDisplay = document.querySelector(".account-info-display");
 let accAvatar = document.querySelector(".avatar-display");
 if (localStorage.getItem("currentUser")) {
-  if (!JSON.parse(localStorage.getItem("currentUser")).avatar) {
-    accAvatar.src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(
-      JSON.parse(localStorage.getItem("currentUser")).username
-    )}`;
-  } else {
-    accAvatar.src = encodeURIComponent(
-      JSON.parse(localStorage.getItem("currentUser")).avatar_url
-    );
-  }
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  accAvatar.src = currentUser.avatar
+    ? encodeURIComponent(currentUser.avatar_url)
+    : `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(
+        currentUser.username
+      )}`;
   accDisplay.innerHTML = `
-  <ul class = "account-info">
+  <ul class="account-info">
   <li><span class="remove">X</span></li>
-  <li>${JSON.parse(localStorage.getItem("currentUser")).username}</li>
-  <li onclick = "handleSignOut()">Logout</li>
+  <li>${currentUser.username}</li>
+  <li onclick="handleSignOut()">Logout</li>
   </ul>
   `;
-  document.querySelector("span.remove").addEventListener("click", () => {
+  accDisplay.querySelector("span.remove").addEventListener("click", () => {
     accDisplay.classList.add("hidden");
   });
 } else {
-  // accDisplay.style.display = "none";
   accDisplay.innerHTML = `
-  <ul class = "account-info">
-  <li><a href="./register.html" class = "reg-direct">Register</a></li></ul>
+  <ul class="account-info">
+  <li><a href="./register.html" class="reg-direct">Register</a></li></ul>
   `;
   accAvatar.src = "./assets/images/register.svg";
   document
@@ -43,17 +44,21 @@ if (localStorage.getItem("currentUser")) {
 accDisplay.classList.add("hidden");
 accAvatar.addEventListener("click", () => {
   accDisplay.classList.toggle("hidden");
-  if (!accDisplay.classList.contains("hidden")) {
-    accDisplay.style.animation = "slide 0.5s ease-in-out";
-  } else {
-    accDisplay.style.animation = "slide 0.5s ease-in-out reverse";
-  }
 });
 
 (async function checkLoggedIn() {
+  const requireReg = document.querySelector(".require-reg");
   if (!localStorage.getItem("currentUser")) {
-    document.querySelector(".require-reg").classList.remove("hidden");
+    requireReg.classList.remove("hidden");
   } else {
-    document.querySelector(".require-reg").classList.add("hidden");
+    requireReg.classList.add("hidden");
   }
 })();
+
+const notice = document.querySelector(".notice");
+const remove = notice.querySelectorAll(".remove");
+remove.forEach((r) =>
+  r.addEventListener("click", () => {
+    notice.classList.add("hidden");
+  })
+);

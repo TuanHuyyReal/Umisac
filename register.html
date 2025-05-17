@@ -22,10 +22,25 @@
     <link rel="stylesheet" href="assets/css/animation.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/reg.css" />
-    <!-- <link rel="stylesheet" href="assets/css/switch-theme.css" /> -->
+    <link rel="stylesheet" href="assets/css/loader.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
   </head>
 
   <body>
+    <div class="loader">
+      <ul class="wave-menu">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
     <header>
       <!-- place navbar here -->
       <nav class="nav navbar">
@@ -181,5 +196,12 @@
     <script type="module" src="assets/js/config.js"></script>
     <script src="assets/js/login.js"></script>
     <script src="assets/js/signup.js"></script>
+    <script src="assets/js/preload.js"></script>
+    <script>
+      const sublogo = document.querySelector('img[alt="Umisac"]');
+      if (screen.width < 710) {
+        sublogo.src = "assets/images/logo-2.png";
+      } else sublogo.src = "assets/images/logo.png";
+    </script>
   </body>
 </html>

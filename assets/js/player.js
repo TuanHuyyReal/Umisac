@@ -49,6 +49,7 @@ function playMusic(playlistLength) {
   reset();
   click++;
   state = "done";
+  console.log(click);
   for (
     let i = JSON.parse(localStorage.getItem("i"));
     i < playlistLength && state == "done";
@@ -272,9 +273,9 @@ function playMusic(playlistLength) {
             if (i == playlistLength - 1) {
               i = 0;
             } else {
-              i++;
+              i += 1;
             }
-          }, 10);
+          }, 1);
 
           localStorage.setItem("i", i);
           console.log(parseInt(localStorage.getItem("i")));
@@ -316,10 +317,10 @@ function playMusic(playlistLength) {
         volumeIcon.addEventListener("click", () => {
           if (audio.volume == 0) {
             audio.volume = 0.5;
-            volumeIcon.src = "./assets/images/volume.svg";
+            volumeIcon.src = "assets/images/volume.svg";
           } else {
             audio.volume = 0;
-            volumeIcon.src = "./assets/images/mute.svg";
+            volumeIcon.src = "assets/images/mute.svg";
           }
         });
       }, 1000);

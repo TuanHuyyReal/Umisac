@@ -19,7 +19,7 @@
     height: 15vh;
   }
 }
-/* tablet width 810 */
+/* tablet width 768 */
 @media screen and (max-width: 768px) {
   main {
     grid-template-areas:
@@ -43,11 +43,12 @@
   .content {
     grid-template-columns: repeat(2, 1fr) !important;
   }
-  .song-card {
-    max-width: 30vw;
-    width: 19vw;
+  .content .album-title {
+    line-break: anywhere;
   }
-
+  ul.songs {
+    gap: 2rem !important;
+  }
   .f-container a.direct {
     max-width: 6vh;
     max-height: 6vh;

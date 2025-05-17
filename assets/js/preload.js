@@ -1,7 +1,7 @@
 const logo = document.querySelector('img[alt="Umisac"]');
 const loader = document.querySelector(".loader");
 logo.src = "assets/images/logo.png";
-if (screen.width < 425) {
+if (screen.width <= 425) {
   logo.src = "assets/images/logo-2.png";
 }
 logo.addEventListener("click", () => {
